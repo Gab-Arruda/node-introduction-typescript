@@ -1,0 +1,53 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "version": "1.0.0",
+        "title": "My first node api",
+        "description": "First node api made while taking classes of a udemy course",
+        "contact": {
+            "name": "Gabriel Arruda dos Santos",
+            "email": "gabriel.a_s@hotmail.com"
+        }
+    },
+    "paths": {
+        "/roles": {
+            "post": {
+                "tags": ["Role"],
+                "summary": "Create a role",
+                "description": "Create a new role",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Role created."
+                    },
+                    "400": {
+                        "description": "Role already exists."
+                    }
+                }
+            },
+            "get": {
+                "tags": ["Role"],
+                "summary": "List all roles.",
+                "description": "Returns all roles paginated.",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        }
+    }
+}
