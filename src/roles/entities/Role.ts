@@ -1,8 +1,15 @@
+import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
 import { v4 as uuidv4} from "uuid";
 
+@Entity('roles')
 export class Role {
+  @PrimaryColumn()
   id?: string
+  
+  @Column()
   name: string
+
+  @CreateDateColumn()
   created_at: Date
 
   constructor() {
@@ -11,3 +18,7 @@ export class Role {
     }
   }
 }
+function CreateDaleColumn() {
+  throw new Error("Function not implemented.");
+}
+
