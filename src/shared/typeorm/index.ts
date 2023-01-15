@@ -1,10 +1,11 @@
 import { Role } from "@roles/entities/Role"
 import { DataSource } from "typeorm"
 import { CreateRolesTable1672841952352 } from "./migrations/1672841952352-CreateRolesTable"
+import { CreateUsersTable1673805369207 } from "./migrations/1673805369207-CreateUsersTable"
 
 export const dataSource = new DataSource({
     type: "sqlite",
     database: "./db.sqlite",
     entities: [Role],
-    migrations: [CreateRolesTable1672841952352],
+    migrations: [CreateRolesTable1672841952352, CreateUsersTable1673805369207],
 })
