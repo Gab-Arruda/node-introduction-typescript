@@ -15,7 +15,7 @@ export class ShowProfileUseCase {
 
   async execute({ userId }: ShowProfileParams): Promise<User> {
     const user = await this.usersRepository.findById(userId);
-    if(user) {
+    if(!user) {
       throw new AppError('User not founds.', 404);
     }
     return user;

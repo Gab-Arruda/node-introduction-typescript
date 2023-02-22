@@ -8,12 +8,14 @@ import { ListUsersController } from "@users/useCases/listUsers/ListUsersControll
 import { CreateLoginController } from "@users/useCases/createLogin/CreateLoginController";
 import { isAuthenticated } from "@shared/http/middlewares/isAuthenticated";
 import { UpdateAvatarController } from "@users/useCases/updateAvatar/UpdateAvatarController";
+import { ShowProfileController } from "@users/useCases/showProfile/ShowProfileController";
 
 const usersRouter = Router();
 const createUserController = container.resolve(CreateUserController);
 const listUsersController = container.resolve(ListUsersController);
 const createLoginController = container.resolve(CreateLoginController);
 const updateAvatarController = container.resolve(UpdateAvatarController);
+const showProfileController = container.resolve(ShowProfileController);
 const upload = multer(uploadConfig)
 
 usersRouter.post('/', isAuthenticated, celebrate({
@@ -48,6 +50,10 @@ usersRouter.post('/login', celebrate({
 
 usersRouter.patch('/avatar', isAuthenticated, upload.single('avatar'), (request, response) => {
   return updateAvatarController.handle(request, response);
+})
+
+usersRouter.get('/profile', isAuthenticated, (request, response) => {
+  return showProfileController.handle(request, response);
 })
 
 export { usersRouter}
