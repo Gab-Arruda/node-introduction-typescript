@@ -7,7 +7,8 @@ export class UpdateProfileController {
   async handle(request: Request, response: Response): Promise<Response> {
     const updateProfileUseCase = container.resolve(UpdateProfileUseCase);
     const userId = request.user.id;
-    const user = await updateProfileUseCase.execute({ userId });
+    const { name, email, old_password, password } = request.body;
+    const user = await updateProfileUseCase.execute({ userId, name, email, old_password, password });
     return response.json(instanceToInstance(user));
   }
 }
