@@ -345,6 +345,69 @@
                 "description": "Role not found"
               }
             }
+          },
+          "get": {
+            "tags": ["Users"],
+            "summary": "List all users",
+            "description": "Returns all users paginated",
+            "parameters": [
+              {
+                "name": "page",
+                "in": "query",
+                "description": "Number of pages",
+                "required": false,
+                "schema": {
+                  "type": "number",
+                  "example": "1"
+                }
+              },
+              {
+                "name": "limit",
+                "in": "query",
+                "description": "Number of registers per page",
+                "required": false,
+                "schema": {
+                  "type": "number",
+                  "example": "15"
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Success.",
+                "content": {
+                  "application/json": {
+                    "example": {
+                      "per_page": 15,
+                      "total": 1,
+                      "current_page": 1,
+                      "data": [
+                        {
+                          "id": "e7fe4898-27ce-499a-a954-752e9234a5f5",
+                          "name": "admin",
+                          "email": "a@a.com",
+                          "avatar": "f4a26cdf2e3b833a9ef7_foto_perfil.jpg",
+                          "isAdmin": true,
+                          "createdAt": "2023-02-11T13:05:30.000Z",
+                          "role": {
+                            "id": "feb693ac-f3ad-4eea-9789-f2fa72ebf538",
+                            "name": "TI",
+                            "createdAt": "2023-02-11T13:05:30.000Z"
+                          },
+                          "avatar_url": "http://localhost:3000/files/f4a26cdf2e3b833a9ef7_foto_perfil.jpg"
+                        }
+                      ]
+                    }
+                  }
+                }
+              },
+              "400": {
+                "description": "Bad Request."
+              },
+              "401": {
+                "description": "Invalid authentication token."
+              }
+            }
           }
         }
     }
